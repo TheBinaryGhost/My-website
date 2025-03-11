@@ -67,48 +67,41 @@ const sendEmail = (e) =>{
 contactForm.addEventListener('submit', sendEmail)
 
 
-/*=============== SHOW SCROLL UP ===============*/ 
-const scrollUp = () => {
-    const scrollUp = document.getElementById('scroll-up');
+document.addEventListener("DOMContentLoaded", function () {
+    const scrollUpButton = document.getElementById("scroll-up");
 
-    // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-    if (window.scrollY >= 350) {
-        scrollUp.classList.add('show-scroll');
-    } else {
-        scrollUp.classList.remove('show-scroll');
-    }
-};
-window.addEventListener('scroll', scrollUp);
-
-/*=============== SCROLL UP FUNCTION ===============*/
-document.getElementById("scroll-up").addEventListener("click", function (event) {
-    event.preventDefault(); // Prevent default link behavior
-    window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
-});
-
-/*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
-const sections = document.querySelectorAll('section[id]');
-
-const scrollActive = () => {
-    const scrollDown = window.scrollY;
-
-    sections.forEach(current => {
-        const sectionHeight = current.offsetHeight,
-              sectionTop = current.offsetTop - 58,
-              sectionId = current.getAttribute('id'),
-              sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']');
-
-        if (sectionsClass) {
-            if (scrollDown > sectionTop && scrollDown <= sectionTop + sectionHeight) {
-                sectionsClass.classList.add('active-link');
-            } else {
-                sectionsClass.classList.remove('active-link');
-            }
+    /*=============== SHOW SCROLL UP BUTTON ===============*/
+    const showScrollUp = () => {
+        if (window.scrollY >= 350) {
+            scrollUpButton.classList.add("show-scroll");
+        } else {
+            scrollUpButton.classList.remove("show-scroll");
         }
-    });
-};
-window.addEventListener('scroll', scrollActive);
+    };
+    window.addEventListener("scroll", showScrollUp);
 
+    /*=============== SMOOTH SCROLL TO TOP ===============*/
+    scrollUpButton.addEventListener("click", function (event) {
+        event.preventDefault(); // Prevent default link behavior
+        window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
+    });
+
+    /*=============== SMOOTH SCROLL FOR NAVIGATION LINKS ===============*/
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+
+                // Remove the hash (#) from the URL after scrolling
+                history.pushState(null, null, window.location.pathname);
+            }
+        });
+    });
+});
 
 
 /*=============== SCROLL REVEAL ANIMATION ===============*/
