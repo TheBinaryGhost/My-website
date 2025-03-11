@@ -111,3 +111,20 @@ sr.reveal(`.home__image`, {origin: 'bottom'})
 sr.reveal(`.about__data, .skills_data`, {origin: 'left'})
 sr.reveal(`.about__image, .skills__content`, {origin: 'right'})
 sr.reveal(`.services__card, .projects__card`, {origin: 'right'})
+
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (event) {
+            event.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: "smooth" });
+
+                // Remove the hash from the URL
+                history.pushState(null, null, window.location.pathname);
+            }
+        });
+    });
+});
