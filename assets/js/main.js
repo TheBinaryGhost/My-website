@@ -103,21 +103,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-
-/*=============== SCROLL REVEAL ANIMATION ===============*/
-const sr = ScrollReveal({
-    origin: 'top',
-    distance: '60px',
-    duration: 2500,
-    reset: true //Animation repeat//
-})
-
-sr.reveal(`.home__data, .home__social, .contact__container, .footer__container`)
-sr.reveal(`.home__image`, {origin: 'bottom'})
-sr.reveal(`.about__data, .skills_data`, {origin: 'left'})
-sr.reveal(`.about__image, .skills__content`, {origin: 'right'})
-sr.reveal(`.services__card, .projects__card`, {origin: 'right'})
-
 document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (event) {
@@ -134,3 +119,17 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+/*=============== SCROLL REVEAL ANIMATION ===============*/
+const sr = ScrollReveal({
+    origin: 'top',
+    distance: '60px',
+    duration: 2500,
+    reset: true //Animation repeat//
+})
+
+sr.reveal(`.home__data, .home__social, .contact__container, .footer__container`)
+sr.reveal(`.home__image`, {origin: 'bottom'})
+sr.reveal(`.about__data, .skills_data`, {origin: 'left'})
+sr.reveal(`.about__image, .skills__content`, {origin: 'right'})
+sr.reveal(`.services__card, .projects__card`, {origin: 'right'})
